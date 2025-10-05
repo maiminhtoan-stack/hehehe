@@ -1,11 +1,9 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
-<HEAD>
-  <TITLE>YEUANHTHU</TITLE>
-  <META NAME="Generator" CONTENT="EditPlus">
-  <META NAME="Author" CONTENT="">
-  <META NAME="Keywords" CONTENT="">
-  <META NAME="Description" CONTENT="">
+<!DOCTYPE HTML>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YEUANHTHU 💖</title>
 
   <style>
     html, body {
@@ -17,6 +15,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
     }
 
     canvas {
@@ -30,19 +29,21 @@
       color: #FFC0CB;
       text-align: center;
       position: absolute;
-      top: 50px;
-      width: 100%;
-      font-size: 40px;
+      top: 40px;
+      width: 90%;
+      font-size: 6vw;
+      line-height: 1.3;
       font-family: 'Times New Roman', Times, serif;
       animation: animate 5s infinite;
       z-index: 3;
+      text-shadow: 0 0 15px #FF66CC;
     }
 
     #pinkboard {
       position: relative;
       margin: auto;
-      height: 500px;
-      width: 500px;
+      height: 60vmin;
+      width: 60vmin;
       animation: animate 5s infinite;
       z-index: 2;
     }
@@ -55,16 +56,14 @@
       height: 100%;
     }
 
-    #fireworks {
-      z-index: 0;
-    }
+    #fireworks { z-index: 0; }
 
     .floating-text {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      color: #FFC0CB; /* 💗 Màu hồng */
-      font-size: 28px;
+      color: #FFC0CB;
+      font-size: 4vw;
       font-family: 'Times New Roman', serif;
       animation: floatUp 4s ease-out forwards;
       z-index: 5;
@@ -85,140 +84,126 @@
       100% { transform: scale(1); }
     }
 
-/* 🌸 Ảnh hai bên */
-.side-image {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 280px; /* chỉnh độ to ảnh */
-  opacity: 0.9;
-  z-index: 4;
-  animation: gentlePulse 2s infinite ease-in-out; /* 💗 Nhịp chậm, nhẹ nhàng */
-  transition: transform 0.4s ease, opacity 0.4s ease;
-}
+    /* 🌸 Ảnh hai bên */
+    .side-image {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 25vw;
+      max-width: 180px;
+      opacity: 0.9;
+      z-index: 4;
+      animation: gentlePulse 2s infinite ease-in-out;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
 
-/* 🌸 Ảnh bên trái và phải */
-.side-image.left {
-  left: 100px;
-}
+    .side-image.left { left: 5vw; }
+    .side-image.right { right: 5vw; }
 
-.side-image.right {
-  right: 100px;
-}
+    .side-image:hover {
+      transform: translateY(-50%) scale(1.05);
+      opacity: 1;
+    }
 
-/* 🌸 Hiệu ứng hover */
-.side-image:hover {
-  transform: translateY(-50%) scale(1.05);
-  opacity: 1;
-}
+    @keyframes gentlePulse {
+      0%   { transform: translateY(-50%) scale(1); opacity: 0.9; }
+      50%  { transform: translateY(-50%) scale(1.03); opacity: 1; }
+      100% { transform: translateY(-50%) scale(1); opacity: 0.9; }
+    }
 
-/* 💗 Animation nhịp nhẹ nhàng */
-@keyframes gentlePulse {
-  0%   { transform: translateY(-50%) scale(1); opacity: 0.9; }
-  50%  { transform: translateY(-50%) scale(1.03); opacity: 1; }
-  100% { transform: translateY(-50%) scale(1); opacity: 0.9; }
-}
-/* 🌸 Icon dễ thương bay lên */
-.floating-icon {
-  position: absolute;
-  font-size: 50px;       /* Kích thước icon */
-  animation: floatIcon 10s linear infinite;  /* Thời gian bay + lặp vô hạn */
-  z-index: 5;            /* Hiển thị trên các layer khác */
-  pointer-events: none;  /* Không ảnh hưởng chuột */
-  opacity: 0.8;          /* Độ mờ nhẹ */
-}
+    /* 🌸 Icon bay */
+    .floating-icon, .falling-icon {
+      position: absolute;
+      z-index: 5;
+      pointer-events: none;
+      opacity: 0.8;
+    }
 
-/* 🌸 Icon dễ thương bay lên */
-.floating-icon {
-  position: absolute;
-  font-size: 50px;       /* Kích thước icon */
-  animation: floatIcon 10s linear infinite;  /* Thời gian bay + lặp vô hạn */
-  z-index: 5;            /* Hiển thị trên các layer khác */
-  pointer-events: none;  /* Không ảnh hưởng chuột */
-  opacity: 0.8;          /* Độ mờ nhẹ */
-}
-/* 🌸 Icon bay từ trên xuống (mới) */
-.falling-icon {
-  position: absolute;
-  font-size: 32px;
-  animation: fallIcon 6s linear infinite;
-  z-index: 5;
-  pointer-events: none;
-  opacity: 0.8;
-}
-@keyframes fallIcon {
-  0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(700px) rotate(360deg); opacity: 0; }
-}
+    .floating-icon {
+      font-size: 6vw;
+      animation: floatIcon 10s linear infinite;
+    }
 
-/* 🌸 Animation bay lên, xoay và mờ dần */
-@keyframes floatIcon {
-  0% {
-    transform: translateX(0) translateY(0) rotate(0deg);
-    opacity: 0; /* xuất hiện từ từ */
-  }
-  10% {
-    opacity: 1; /* hiện đầy đủ */
-  }
-  90% {
-    opacity: 1; /* duy trì hiển thị */
-  }
-  100% {
-    transform: translateX(50px) translateY(-300px) rotate(360deg);
-    opacity: 0; /* biến mất */
-  }
-}
+    .falling-icon {
+      font-size: 5vw;
+      animation: fallIcon 6s linear infinite;
+    }
 
+    @keyframes floatIcon {
+      0% { transform: translate(0,0) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translate(50px,-300px) rotate(360deg); opacity: 0; }
+    }
 
+    @keyframes fallIcon {
+      0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(700px) rotate(360deg); opacity: 0; }
+    }
+
+    /* 💗 Responsive fix cho điện thoại nhỏ */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 5.5vw;
+        top: 20px;
+      }
+
+      .side-image {
+        width: 28vw;
+        max-width: 120px;
+      }
+
+      #pinkboard {
+        width: 80vmin;
+        height: 80vmin;
+      }
+
+      .floating-text {
+        font-size: 4.5vw;
+      }
+    }
   </style>
-</HEAD>
+</head>
 
-<BODY>
-  <!-- 🌸 Ảnh hai bên -->
+<body>
   <img src="trai1.jpg" class="side-image left" />
   <img src="phai.jpg" class="side-image right" />
 
   <canvas id="fireworks"></canvas>
   <canvas id="stars"></canvas>
-  <script>
-  // 🌸 Danh sách icon dễ thương bạn muốn
-  const icons = ["💖", "🌸", "🐥", "💞", "🐷"];
-
-  function createFloatingIcon() {
-    const icon = document.createElement("div");
-    icon.className = "floating-icon";
-
-    // Chọn ngẫu nhiên một icon
-    icon.innerText = icons[Math.floor(Math.random() * icons.length)];
-
-    // Vị trí ngang ngẫu nhiên
-    icon.style.left = Math.random() * (window.innerWidth - 50) + "px";
-
-    // Bắt đầu từ dưới cùng màn hình
-    icon.style.top = window.innerHeight + "px";
-
-    // Thêm vào body
-    document.body.appendChild(icon);
-
-    // Xóa icon sau khi animation kết thúc (6s)
-    setTimeout(() => icon.remove(), 6000);
-  }
-
-  // Tạo icon mới mỗi 1.5 giây
-  setInterval(createFloatingIcon, 1000);
-</script>
-
 
   <h1>
-    Chúc em trung thu vui vẻ 💖<br/>
+    Chúc em trung thu vui vẻ 💖<br>
     Iu em nhìu nhìu nhaa 💕
   </h1>
 
   <div class="box">
     <canvas id="pinkboard"></canvas>
   </div>
+
+  <!-- 🌸 Icon bay -->
+  <script>
+    const icons = ["💖", "🌸", "🐥", "💞", "🐷"];
+    function createFloatingIcon() {
+      const icon = document.createElement("div");
+      icon.className = "floating-icon";
+      icon.innerText = icons[Math.floor(Math.random() * icons.length)];
+      icon.style.left = Math.random() * (window.innerWidth - 50) + "px";
+      icon.style.top = window.innerHeight + "px";
+      document.body.appendChild(icon);
+      setTimeout(() => icon.remove(), 6000);
+    }
+    setInterval(createFloatingIcon, 1000);
+  </script>
+
+  <!-- 🌟 Sao và trái tim, pháo hoa -->
+  <!-- (giữ nguyên toàn bộ script gốc của bạn, không cần thay đổi, vì chỉ là hiệu ứng canvas) -->
+  <!-- 🌟 Copy lại phần script sao, trái tim, pháo hoa, lời chúc từ bản gốc ở đây -->
+</body>
+</html>
+
 
   <!-- Nền sao lấp lánh -->
   <script>
